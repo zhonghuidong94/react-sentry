@@ -12,6 +12,7 @@ function App() {
         </p>
         <a
           className="App-link"
+          onClick={() => window.addEventListener.aaa()}
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
