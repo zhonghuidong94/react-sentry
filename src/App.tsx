@@ -1,3 +1,5 @@
+/*eslint-disable */
+// @ts-nocheck
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -12,7 +14,7 @@ function App() {
         </p>
         <a
           className="App-link"
-          onClick={() => window.addEventListener.aaa()}
+          onClick={() => window.addEventListener.cccc()}
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"

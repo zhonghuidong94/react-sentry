@@ -26,6 +26,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 const postcssNormalize = require('postcss-normalize');
 
@@ -737,6 +738,20 @@ module.exports = function (webpackEnv) {
             },
           },
         }),
+        new SentryCliPlugin({
+          release: '0.0.2', // 版本
+          // token: sentry 服务准入 sentry-cli 上传的鉴权 token，可以在 sentry管理界面 的 Settings -> Account -> API -> Auth Tokens 中创建和删除
+          authToken: '6007c8b119e74351b322fab43d2b473f5e7e4ac1f17b49c99c4a720bc5bf3811',
+          // url: 要上传的 sentry 服务的地址，即我们通过 docker 启动的服务的地址
+          url: 'http://47.96.177.204:9000/',
+          // org: 组织名称，可以在 sentry 管理界面的 Settings 中设置组织
+          org: 'sentry',
+          // project: sentry 项目名，可以在 sentry管理界面 的Projects中查看、创建、设置项目
+          project: 'react',
+          urlPrefix: '~/',
+          include: './build',
+          ignore: ['node_modules'],
+        })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.
